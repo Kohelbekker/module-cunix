@@ -46,9 +46,10 @@ int       test_allocation()
   return (0);
 }
 
-void      remove_static(node_t *node)
+void      remove_static(node_t *node /*__attribute__((unused))*/)
 {
-  NULL;
+   
+   /* node = */NULL;
 }
 
 int       test_prototyping()
@@ -94,9 +95,9 @@ int       test_smalltree()
 int   main(void)
 {
   test_allocation();
-  assert(test_prototyping() == 0);
-  assert(test_smalltree() == 0);
-  assert(test_visiting() == 0);
+ // assert(test_prototyping() == 0);
+  //assert(test_smalltree() == 0);
+  //assert(test_visiting() == 0);
 
   return (0);
 }

@@ -125,24 +125,16 @@ int shell_exit(char **args)
   return (0);
 }
 
-int shell_echo(char **args, hashtable_t *ht)
+int shell_echo(char **args)
 {
     int i;
-    
+
     i = 1;
-    if (args[1][0] == '$')
+    while (args[i])
     {
-        args[1]++;
-        printf("%s\n", hash_get(ht, args[1]));
-    }
-    else
-    {
-        while (args[i])
-        {
-            printf("%s ", args[i]);
-            i++;
-        }
-    }
+        printf("%s ", args[i]);
+        i++;
+    } 
     printf("\n");
     return (1);
 }
@@ -181,7 +173,7 @@ int         shell_export(char **args, hashtable_t *ht)
     key = strtok(args[1], "=");
     value = strtok(NULL, " ");
     
-    hash_set(ht, key, value);
+    //hash_export(key, value);
     return (1);
 }
 
@@ -215,7 +207,7 @@ int         shell_execute(char **args, hashtable_t *ht)
     if (args[0] == NULL)
         return 1;
     else if (strcmp(args[0], "echo") == 0)
-        return(shell_echo(args, ht));
+        return(shell_echo(args));
     else if (strcmp(args[0], "cd") == 0)
         return(shell_cd(args));
     else if (strcmp(args[0], "pwd") == 0)
